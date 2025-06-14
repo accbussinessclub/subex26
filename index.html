@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ABC Sub-Executive Result 26</title>
+    <title>ABC Sub-Executive Result '26</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -89,22 +89,26 @@
             MARgin-bottom: 15px;
         }
         
-       .logo {
- position: absolute;
- top: 10px;
- left: 140px;
- width: auto; /* Adjust width as needed, height will scale proportionally */
- height: 40px; /* Set a desired height for the logo */
- /* Remove properties no longer needed for an image logo */
- background: none;
- border-radius: 0;
- display: flex; /* You might not need flex anymore, depending on other header content */
- align-items: center; /* Adjust if needed */
- justify-content: center; /* Adjust if needed */
- font-weight: bold; /* No longer relevant for image */
- font-size: 1.5rem; /* No longer relevant for image */
- box-shadow: none; /* You can add a shadow to the image if you like */
- z-index: 3;
+      .logo {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 40px;
+    width: auto;
+    z-index: 3;
+}
+
+@media (max-width: 768px) {
+    .logo {
+        height: 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo {
+        height: 40px;
+    }
 }
 
 .logo img {
@@ -340,7 +344,7 @@
                 <img src="abc.svg">
             </div>
             <br>
-            <h1>Sub-Executive Result 26</h1>
+            <h1>Sub-Executive Result '26</h1>
             <p class="subtitle">Meet the newly appointed dedicated team driving our club forward</p>
         </header>
         
