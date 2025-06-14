@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ABC Sub-Executive Result 26</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --light-teal: #e0f2f1;
+            --marine-blue: #0a3d62;
+            --midnight-indigo: #1a237e;
+            --vanilla-cream: #f5f5dc;
+            --accent-teal: #4db6ac;
+            --accent-indigo: #3949ab;
+            --dark-text: #212121;
+            --light-text: #f5f5f5;
+            --gold-accent: #ffc107;
+        }
+        
+        body {
+            background: linear-gradient(135deg, var(--light-teal), var(--vanilla-cream));
+            color: var(--dark-text);
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: rgba(255, 255, 255, 0.92);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+            position: relative;
+        }
+        
+        header {
+            background: linear-gradient(to right, var(--marine-blue), var(--midnight-indigo));
+            color: var(--light-text);
+            text-align: center;
+            padding: 30px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: "";
+            position: absolute;
+            top: -50px;
+            left: -50px;
+            width: 200px;
+            height: 200px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+        }
+        
+        header::after {
+            content: "";
+            position: absolute;
+            bottom: -80px;
+            right: -30px;
+            width: 150px;
+            height: 150px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 2;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            position: relative;
+            z-index: 2;
+            margin-bottom: 15px;
+        }
+        
+       .logo {
+ position: absolute;
+ top: 10px;
+ left: 140px;
+ width: auto; /* Adjust width as needed, height will scale proportionally */
+ height: 40px; /* Set a desired height for the logo */
+ /* Remove properties no longer needed for an image logo */
+ background: none;
+ border-radius: 0;
+ display: flex; /* You might not need flex anymore, depending on other header content */
+ align-items: center; /* Adjust if needed */
+ justify-content: center; /* Adjust if needed */
+ font-weight: bold; /* No longer relevant for image */
+ font-size: 1.5rem; /* No longer relevant for image */
+ box-shadow: none; /* You can add a shadow to the image if you like */
+ z-index: 3;
+}
+
+.logo img {
+ display: block; /* Prevent extra space below the image */
+ height: 100%; /* Make the image take the full height of the .logo container */
+ width: auto; /* Maintain aspect ratio */
+}
+
+        
+        .filters {
+            background-color: rgba(10, 61, 98, 0.1);
+            padding: 15px 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            border-bottom: 2px solid var(--accent-teal);
+        }
+        
+        .filter-btn {
+            padding: 8px 20px;
+            border: none;
+            border-radius: 30px;
+            background: var(--marine-blue);
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .filter-btn:hover, .filter-btn.active {
+            background: var(--accent-indigo);
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .sectors-container {
+            padding: 20px;
+        }
+        
+        .sector {
+            margin-bottom: 40px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            background: linear-gradient(to bottom, var(--vanilla-cream), white);
+            transition: all 0.4s ease;
+        }
+        
+        .sector-header {
+            background: linear-gradient(to right, var(--midnight-indigo), var(--marine-blue));
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+        }
+        
+        .sector-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .member-count {
+            background: var(--accent-teal);
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .members-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+        
+        .member-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        
+        .member-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .member-header {
+            background: linear-gradient(to right, var(--marine-blue), var(--accent-indigo));
+            color: white;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .member-id {
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        
+        .member-section {
+            background: var(--accent-teal);
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+        }
+        
+        .member-info {
+            padding: 15px;
+        }
+        
+        .member-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--midnight-indigo);
+        }
+        
+        .member-details {
+            color: #555;
+            margin-bottom: 3px;
+            font-size: 0.95rem;
+        }
+        
+        .in-charge-badge {
+            display: inline-block;
+            background: linear-gradient(to right, #ff9800, #f57c00);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: var(--midnight-indigo);
+            color: white;
+            font-size: 0.9rem;
+            margin-top: 20px;
+            border-top: 2px solid var(--accent-teal);
+        }
+        
+        .search-container {
+            max-width: 500px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+        
+        .search-box {
+            width: 100%;
+            padding: 12px 20px;
+            border: 2px solid var(--accent-indigo);
+            border-radius: 30px;
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+        
+        .search-box:focus {
+            border-color: var(--accent-teal);
+            box-shadow: 0 0 0 3px rgba(77, 182, 172, 0.3);
+        }
+        
+        @media (max-width: 768px) {
+            .members-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .sector-title {
+                font-size: 1.3rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .members-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .sector-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            
+            .filters {
+                gap: 10px;
+            }
+            
+            .filter-btn {
+                padding: 6px 15px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <img src="abc.svg">
+            </div>
+            <br>
+            <h1>Sub-Executive Result 26</h1>
+            <p class="subtitle">Meet the newly appointed dedicated team driving our club forward</p>
+        </header>
+        
+              
+        
+        <div class="filters">
+            <button class="filter-btn active" data-filter="all"><i class="fas fa-users"></i> All Teams</button>
+            <button class="filter-btn" data-filter="Administration "><i class="fas fa-user-tie"></i> Administration </button>
+            <button class="filter-btn" data-filter="organizing"><i class="fas fa-tasks"></i> Organizing</button>
+            <button class="filter-btn" data-filter="project"><i class="fas fa-laptop-code"></i> Project & Technology</button>
+            <button class="filter-btn" data-filter="communication"><i class="fas fa-bullhorn"></i> Communication</button>
+            <button class="filter-btn" data-filter="finance"><i class="fas fa-coins"></i> Finance</button>
+            <button class="filter-btn" data-filter="photography"><i class="fas fa-camera"></i> Photography</button>
+            <button class="filter-btn" data-filter="creative"><i class="fas fa-paint-brush"></i> Creative</button>
+        </div>
+        
+        <div class="sectors-container">
+            <!-- Administration  Sector -->
+            <div class="sector" id="Administration ">
+                <div class="sector-header">
+                    <div class="sector-title"><i class="fas fa-user-tie"></i> Administration </div>
+                    <div class="member-count">7 Members</div>
+                </div>
+                <div class="members-grid">
+                    <!-- Administration  members -->
+                    <div class="member-card">
+                        <div class="member-header">
+                            <div class="member-id">245107</div>
+                            <div class="member-section">B1</div>
+                        </div>
+                        <div class="member-info">
+                            <div class="member-name">Ahnaf Rashid</div>
+                            <div class="member-details">House: MAR</div>
+                            <div class="in-charge-badge">IN CHARGE</div>
+                        </div>
+                    </div>
+                    
+                    <div class="member-card">
+                        <div class="member-header">
+                            <div class="member-id">246005</div>
+                            <div class="member-section">B4</div>
+                        </div>
+                        <div class="member-info">
+                            <div class="member-name">Afifa Jahan Tohfa</div>
+                            <div class="member-details">House: MJ</div>
+                        </div>
+                    </div>
+                    
+                    <div class="member-card">
+                        <div class="member-header">
+                            <div class="member-id">242867</div>
+                            <div class="member-section">S11</div>
+                        </div>
+                        <div class="member-info">
+                            <div class="member-name">Khalid Sharfer</div>
+                            <div class="member-details">House: MAR</div>
+                        </div>
+                    </div>
+                    
+                    <div class="member-card">
+                        <div class="member-header">
+                            <div class="member-id">245130</div>
+                            <div class="member-section">B1</div>
+                        </div>
+                        <div class="member-info">
+                            <div class="member-name">Nadim Abdullah</div>
+                            <div class="member-details">House: HR</div>
+                        </div>
+                    </div>
+                    
+                    <div class="member-card">
+                        <div class="member-header">
+                            <div class="member-id">246254</div>
+                            <div class="member-section">B-2</div>
+                        </div>
+                        <div class="member-info">
+                            <div class="member-name">Mansib Islam Siam</div>
+                            <div class="member-details">House: HR</div>
+                        </div>
+                    </div>
+                    
+                    <div class="member-card">
+                        <div class="member-header">
+                            <div class="member-id">245017</div>
+                            <div class="member-section">B-1</div>
+                        </div>
+                        <div class="member-info">
+                            <div class="member-name">Adila Amin</div>
+                            <div class="member-details">House: MJ</div>
+                        </div>
+                    </div>
+                    
+                    <div class="member-card">
+                        <div class="member-header">
+                            <div class="member-id">246311</div>
+                            <div class="member-section">B-4</div>
+                        </div>
+                        <div class="member-info">
+                            <div class="member-name">Fatin Maharab Mahir</div>
+                            <div class="member-details">House: MAR</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Organizing Sector -->
+            <div class="sector" id="organizing">
+                <div class="sector-header">
+                    <div class="sector-title"><i class="fas fa-tasks"></i> ORGANIZING</div>
+                    <div class="member-count">7 Members</div>
+                </div>
+                <div class="members-grid">
+                    <!-- Organizing members -->
+                    <div class="member-card">
+                        <div class="member-header">
+                            <div class="member-id">246270</div>
+                            <div class="member-section">B3</div>
+                        </div>
+                        <div class="member-info">
+                            <div class="member-name">Styam Sami Chowdhury</div>
+                            <div class="member-details">House: HR</div>
+                            <div class="in-charge-badge">IN CHARGE</div>
+                        </div>
+                    </div>
+                    
+                    <div class="member-card">
+                        <div class="member-header">
+                            <div class="member-id">246302</div>
+                            <div class="member-section">B2</div>
+                        </div>
+                        <div class="member-info">
+                            <div class="member-name">Shahadat Islam Shadhin</div>
+                            <div class="member-details">House: HR</div>
+                        </div>
+                    </div>
+                    
+                    <div class="member-card">
+                        <div class="member-header">
+                            <div class="member-id">246248</div>
+                            <div class="member-section">B-3</div>
+                        </div>
+                        <div class="member-info">
+                            <div class="member-name">Abtahi Akbar Alif</div>
+                            <div class="member-details">House: MK</div>
+                        </div>
+                    </div>
+                    
+                    <div class="member-card">
+                        <div class="member-header">
+                            <div class="member-id">244009</div>
+                            <div class="member-section">H</div>
+                        </div>
+                        <div class="member-info">
+                            <div class="member-name">Fayeka Biura Masud</div>
+                            <div class="member-details">House: MJ</div>
+                        </div>
+                    </div>
+                    
+                    <div class="member-card">
+                        <div class="member-header">
+                            <div class="member-id">240147</div>
+                            <div class="member-section">S1</div>
+                        </div>
+                        <div class="member-info">
+                            <div class="member-name">Nabila Nawar</div>
+                            <div class="member-details">House: MAR</div>
+                        </div>
+                    </div>
+                    
+                    <div class="member-card">
+                        <div class="member-header">
+                            <div class="member-id">242684</div>
+                            <div class="member-section">S17</div>
+                        </div>
+                        <div class="member-info">
+                            <div class="member-name">Nurul Hasan Siddique Robin</div>
+                            <div class="member-details">House: MJ</div>
+                        </div>
+                    </div>
+                    
+                    <div class="member-card">
+                        <div class="member-header">
+                            <div class="member-id">246078</div>
+                            <div class="member-section">B4</div>
+                        </div>
+                        <div class="member-info">
+                            <div class="member-name">Tanhaz Amrin</div>
+                            <div class="member-details">House: HR</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Project & Technologynology Sector -->
+            <div class="sector" id="project">
+                <div class="sector-header">
+                    <div class="sector-title"><i class="fas fa-laptop-code"></i> Project & TechnologyNOLOGY</div>
+                    <div class="member-count">6 Members</div>
+                </div>
+                <div class="members-grid">
+                    <!-- Project & Technology members -->
+                    <div class="member-card">
+                        <div class="member-header">
+                            <div class="member-id">242555</div>
+                            <div class="member-section">S-11</div>
+                        </div>
+                        <div class="member-info">
+                            <div class="member-name">Swakshor Sarker</div>
+                            <div class="member-details">House: MAR</div>
+                            <div class="in-charge-badge">IN CHARGE</div>
+                        </div>
+                    </div>
+                    
+                    <div class="member-card">
+                        <div class="member-header">
+                            <div class="member-id">246077</div>
+                            <div class="member-section">B-3</div>
+                        </div>
+                        <div class="member-info">
+                            <div class="member-name">Tahsin Nawal Rahman</div>
+                            <div class="member-details">House: MJ</div>
+                        </div>
+                    </div>
+                    
+                    <div class="member-card">
+                        <div class="member-header">
+                            <div class="member-id">246245</div>
+                            <div class="member-section">B-4</div>
+                        </div>
+                        <div class="member-info">
+                            <div class="member-name">Md Shamrat Jahan</div>
+                            <div class="member-details">House: MJ</div>
+                        </div>
+                    </div>
+                    
+                    <div class="member-card">
+                        <div class="member-header">
+                            <div class="member-id">240007</div>
+                            <div class="member-section">s-1</div>
+                        </div>
+                        <div class="member-info">
+                            <div class="member-name">Rehnuma Akter Tisfia</div>
+                            <div class="member-details">House: MAR</div>
+                        </div>
+                    </div>
+                    
+                    <div class="member-card">
+                        <div class="member-header">
+                            <div class="member-id">246260</div>
+                            <div class="member-section">b-4</div>
+                        </div>
+                        <div class="member-info">
+                            <div class="member-name">Kazi Tahmid Hasan</div>
+                            <div class="member-details">House: mk</div>
+                        </div>
+                    </div>
+                    
+                    <div class="member-card">
+                        <div class="member-header">
+                            <div class="member-id">245147</div>
+                            <div class="member-section">b1</div>
+                        </div>
+                        <div class="member-info">
+                            <div class="member-name">Issam Bin Hafiz</div>
+                            <div class="member-details">House: MAR</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Communication & Marketing Sector -->
+            <div class="sector" id="communication">
+                <div class="sector-header">
+                    <div class="sector-title"><i class="fas fa-bullhorn"></i> COMMUNICATION AND MARKETING</div>
+                    <div class="member-count">6 Members</div>
+                </div>
+                <div class="members-grid">
+                    <!-- Communication members -->
+                    <div class="member-card">
+                        <div class="member-header">
+                            <div class="member-id">245118</div>
+                            <div class="member-section">b1</div>
+                        </div>
+                        <div class="member-info">
+                            <div class="member-name">Mir Tauhid Iram</div>
+                            <div class="member-details">House: hr</div>
+                            <div class="in-charge-badge">IN CHARGE</div>
+                        </div>
+                    </div>
+                    
+                    <div class="member-card">
+                        <div class="member-header">
+                            <div class="member-id">246069</div>
+                            <div class="member-section">b4</div>
+                        </div>
+                        <div class="member-info">
+                            <div class="member-name">Tashfia Tabassum Maisha</div>
+                            <div class="member-details">House: mj</div>
+                        </div>
+                    </div>
+                    
+                    <div class="member-card">
+                        <div class="member-header">
+                            <div class="member-id">245034</div>
+                            <div class="member-section">B1</div>
+                        </div>
+                        <div class="member-info">
+                            <div class="member-name">Monami Mizan Anuza</div>
+                            <div class="member-details">House: H-R</div>
+                        </div>
+                    </div>
+                    
+                    <div class="member-card">
+                        <div class="member-header">
+                            <div class="member-id">246089</div>
+                            <div class="member-section">B-2</div>
+                        </div>
+                        <div class="member-info">
+                            <div class="member-name">Shurovi akter shova</div>
+                            <div class="member-details">House: MJ</div>
+                        </div>
+                    </div>
+                    
+                    <div class="member-card">
+                        <div class="member-header">
+                            <div class="member-id">246201</div>
+                            <div class="member-section">B-4</div>
+                        </div>
+                        <div class="member-info">
+                            <div class="member-name">Md.Fahim Kabir</div>
+                            <div class="member-details">House: MJ</div>
+                        </div>
+                    </div>
+                    
+                    <div class="member-card">
+                        <div class="member-header">
+                            <div class="member-id">246079</div>
+                            <div class="member-section">b4</div>
+                        </div>
+                        <div class="member-info">
+                            <div class="member-name">Labiba Mamun Afra</div>
+                            <div class="member-details">House: mar</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Finance Sector -->
+            <div class="sector" id="finance">
+                <div class="sector-header">
+                    <div class="sector-title"><i class="fas fa-coins"></i> FINANCE</div>
+                    <div class="member-count">7 Members</div>
+                </div>
+                <div class="members-grid">
+                    <!-- Finance members -->
+                    <div class="member-card">
+                        <div class="member-header">
+                            <div class="member-id">246017</div>
+                            <div class="member-section">B4</div>
+                        </div>
+                        <div class="member-info">
+                            <div class="member-name">Sumaiya Alam</div>
+                            <div class="member-details">House: MJ</div>
+                            <div class="in-charge-badge">IN CHARGE</div>
+                        </div>
+                    </div>
+                    
+                    <div class="member-card">
+                        <div class="member-header">
+                            <div class="member-id">246325</div>
+                            <div class="member-section">B-2</div>
+                        </div>
+                        <div class="member-info">
+                            <div class="member-name">Md. Shahriar Alam Arnob</div>
+                            <div class="member-details">House: MJ</div>
+                        </div>
+                    </div>
+                    
+                    <div class="member-card">
+                        <div class="member-header">
+                            <div class="member-id">246298</div>
+                            <div class="member-section">B-2</div>
+                        </div>
+                        <div class="member-info">
+                            <div class="member-name">Raysul Islam Rayhan</div>
+                            <div class="member-details">House: HR</div>
+                        </div>
+                    </div>
+                    
+                    <div class="member-card">
+                        <div class="member-header">
+                            <div class="member-id">246210</div>
+                            <div class="member-section">B4</div>
+                        </div>
+                        <div class="member-info">
+                            <div class="member-name">Sadman Shahriar Mahin</div>
+                            <div class="member-details">House: HR</div>
+                        </div>
+                    </div>
+                    
+                    <div class="member-card">
+                        <div class="member-header">
+                            <div class="member-id">242636</div>
+                            <div class="member-section">S-11</div>
+                        </div>
+                        <div class="member-info">
+                            <div class="member-name">Arib Mahmud</div>
+                            <div class="member-details">House: MK</div>
+                        </div>
+                    </div>
+                    
+                    <div class="member-card">
+                        <div class="member-header">
+                            <div class="member-id">246316</div>
+                            <div class="member-section">B4</div>
+                        </div>
+                        <div class="member-info">
+                            <div class="member-name">Sa.siam</div>
+                            <div class="member-details">House: Not specified</div>
+                        </div>
+                    </div>
+                    
+                    <div class="member-card">
+                        <div class="member-header">
+                            <div class="member-id">246008</div>
+                            <div class="member-section">B3</div>
+                        </div>
+                        <div class="member-info">
+                            <div class="member-name">Suraiya Jaman Ritu</div>
+                            <div class="member-details">House: MK</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Photography Sector -->
+            <div class="sector" id="photography">
+                <div class="sector-header">
+                    <div class="sector-title"><i class="fas fa-camera"></i> PHOTOGRAPHY</div>
+                    <div class="member-count">6 Members</div>
+                </div>
+                <div class="members-grid">
+                    <!-- Photography members -->
+                    <div class="member-card">
+                        <div class="member-header">
+                            <div class="member-id">246273</div>
+                            <div class="member-section">B-3</div>
+                        </div>
+                        <div class="member-info">
+                            <div class="member-name">Tajbir Protroy</div>
+                            <div class="member-details">House: MJ</div>
+                            <div class="in-charge-badge">IN CHARGE</div>
+                        </div>
+                    </div>
+                    
+                    <div class="member-card">
+                        <div class="member-header">
+                            <div class="member-id">240212</div>
+                            <div class="member-section">S-3</div>
+                        </div>
+                        <div class="member-info">
+                            <div class="member-name">Norjahan Al Haq</div>
+                            <div class="member-details">House: MK</div>
+                        </div>
+                    </div>
+                    
+                    <div class="member-card">
+                        <div class="member-header">
+                            <div class="member-id">246267</div>
+                            <div class="member-section">B-3</div>
+                        </div>
+                        <div class="member-info">
+                            <div class="member-name">tonmoy taj</div>
+                            <div class="member-details">House: MAR</div>
+                        </div>
+                    </div>
+                    
+                    <div class="member-card">
+                        <div class="member-header">
+                            <div class="member-id">246322</div>
+                            <div class="member-section">B3</div>
+                        </div>
+                        <div class="member-info">
+                            <div class="member-name">Mohammed Shahriar Hossain</div>
+                            <div class="member-details">House: HR</div>
+                        </div>
+                    </div>
+                    
+                    <div class="member-card">
+                        <div class="member-header">
+                            <div class="member-id">246070</div>
+                            <div class="member-section">B-4</div>
+                        </div>
+                        <div class="member-info">
+                            <div class="member-name">aurora zaman</div>
+                            <div class="member-details">House: HR</div>
+                        </div>
+                    </div>
+                    
+                    <div class="member-card">
+                        <div class="member-header">
+                            <div class="member-id">242872</div>
+                            <div class="member-section">s11</div>
+                        </div>
+                        <div class="member-info">
+                            <div class="member-name">Mahfuz Anam Khan</div>
+                            <div class="member-details">House: mk</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Creative Sector -->
+            <div class="sector" id="creative">
+                <div class="sector-header">
+                    <div class="sector-title"><i class="fas fa-paint-brush"></i> CREATIVE</div>
+                    <div class="member-count">6 Members</div>
+                </div>
+                <div class="members-grid">
+                    <!-- Creative members -->
+                    <div class="member-card">
+                        <div class="member-header">
+                            <div class="member-id">246045</div>
+                            <div class="member-section">B4</div>
+                        </div>
+                        <div class="member-info">
+                            <div class="member-name">Nanziba Binta Atiq</div>
+                            <div class="member-details">House: MJ</div>
+                            <div class="in-charge-badge">IN CHARGE</div>
+                        </div>
+                    </div>
+                    
+                    <div class="member-card">
+                        <div class="member-header">
+                            <div class="member-id">246051</div>
+                            <div class="member-section">B-3</div>
+                        </div>
+                        <div class="member-info">
+                            <div class="member-name">Farzana Islam</div>
+                            <div class="member-details">House: MAR</div>
+                        </div>
+                    </div>
+                    
+                    <div class="member-card">
+                        <div class="member-header">
+                            <div class="member-id">246131</div>
+                            <div class="member-section">B4</div>
+                        </div>
+                        <div class="member-info">
+                            <div class="member-name">Sumaiya Akter Runa</div>
+                            <div class="member-details">House: MAR</div>
+                        </div>
+                    </div>
+                    
+                    <div class="member-card">
+                        <div class="member-header">
+                            <div class="member-id">246040</div>
+                            <div class="member-section">B-4</div>
+                        </div>
+                        <div class="member-info">
+                            <div class="member-name">Nuzahat zafran zara</div>
+                            <div class="member-details">House: MK</div>
+                        </div>
+                    </div>
+                    
+                    <div class="member-card">
+                        <div class="member-header">
+                            <div class="member-id">246095</div>
+                            <div class="member-section">B3</div>
+                        </div>
+                        <div class="member-info">
+                            <div class="member-name">Karima Chowdhury</div>
+                            <div class="member-details">House: MAR</div>
+                        </div>
+                    </div>
+                    
+                    <div class="member-card">
+                        <div class="member-header">
+                            <div class="member-id">246073</div>
+                            <div class="member-section">B-3</div>
+                        </div>
+                        <div class="member-info">
+                            <div class="member-name">Miftahul Jannat Fariha</div>
+                            <div class="member-details">House: MJ</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>ABC Sub-Executive Result 26 | © 2025 ACC Business Club. All rights reserved.</p>
+            <p><span>⚠️</span><br>ACC Business Clubs Executives Hold The Full Authority To Change This Temporary Result Without Any Prior Notice
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        // Filter functionality
+        document.querySelectorAll('.filter-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                // Remove active class from all buttons
+                document.querySelectorAll('.filter-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                
+                // Add active class to clicked button
+                this.classList.add('active');
+                
+                // Get the filter value
+                const filterValue = this.getAttribute('data-filter');
+                
+                // Show all sectors initially
+                document.querySelectorAll('.sector').forEach(sector => {
+                    sector.style.display = 'block';
+                });
+                
+                // If "all" is not selected, hide other sectors
+                if (filterValue !== 'all') {
+                    document.querySelectorAll('.sector').forEach(sector => {
+                        if (sector.id !== filterValue) {
+                            sector.style.display = 'none';
+                        }
+                    });
+                }
+            });
+        });
+
+        // Search functionality
+        const searchBox = document.querySelector('.search-box');
+        searchBox.addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase().trim();
+            
+            document.querySelectorAll('.member-card').forEach(card => {
+                const name = card.querySelector('.member-name').textContent.toLowerCase();
+                const id = card.querySelector('.member-id').textContent.toLowerCase();
+                const dept = card.querySelector('.member-details').textContent.toLowerCase();
+                
+                if (name.includes(searchTerm) || id.includes(searchTerm) || dept.includes(searchTerm)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+
+        // Sector header click to collapse/expand
+        document.querySelectorAll('.sector-header').forEach(header => {
+            header.addEventListener('click', function() {
+                const sector = this.parentElement;
+                const grid = this.nextElementSibling;
+                
+                if (grid.style.display === 'none') {
+                    grid.style.display = 'grid';
+                    sector.style.backgroundColor = '';
+                } else {
+                    grid.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
